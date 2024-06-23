@@ -9,33 +9,42 @@
 <body>
   <div id="startScreen">
     <div class="content">
-      <h1>Jornadaa Binária - Quiz Game</h1>
+      <h1>Jornada Binária - Quiz Game</h1>
       <button id="startBtn">Start</button>
       <button id="ranking">Ranking</button>
       <button id="sair">Sair</button>
+      <p>Acessos: <span id="accessCounter">0</span></p>
     </div>
   </div>
 
   <script>
+    // Atualiza o contador de acessos ao carregar a página
+    document.addEventListener("DOMContentLoaded", function() {
+      var xhr = new XMLHttpRequest();
+      xhr.open("GET", "counter.php", true);
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+          document.getElementById("accessCounter").innerText = xhr.responseText;
+        }
+      };
+      xhr.send();
+    });
+
     document.getElementById("startBtn").onclick = function () {
       window.location.href = "index.html";
     };
     document.getElementById("ranking").onclick = function () {
       window.location.href = "ranking.html";
     };
-  
+
     document.getElementById("sair").onclick = function () {
-        var xhr = new XMLHttpRequest();
-        xhr.open("GET", "logout.php", true);
-        xhr.send();
-        
-        // Redirecionar para a tela de login após o logout
-        window.location.href = "login.html";
+      var xhr = new XMLHttpRequest();
+      xhr.open("GET", "logout.php", true);
+      xhr.send();
+
+      // Redirecionar para a tela de login após o logout
+      window.location.href = "login.html";
     };
-</script>
-
-     
-
   </script>
 </body>
 </html>
