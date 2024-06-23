@@ -17,18 +17,18 @@
     </div>
   </div>
 
+  
+      <section id="display" class="counter__number">0</section>
+      <section class="counter__btns">
+        <button id="decrease">Decrease</button>
+        <button id="reset">Reset</button>
+        <button id="increase">Increase</button>
+      </section>
+    </main>
+    <script src="script.js"></script>
+
   <script>
-    // Atualiza o contador de acessos ao carregar a página
-    document.addEventListener("DOMContentLoaded", function() {
-      var xhr = new XMLHttpRequest();
-      xhr.open("GET", "counter.php", true);
-      xhr.onreadystatechange = function() {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-          document.getElementById("accessCounter").innerText = xhr.responseText;
-        }
-      };
-      xhr.send();
-    });
+   
 
     document.getElementById("startBtn").onclick = function () {
       window.location.href = "index.html";
