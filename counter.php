@@ -10,12 +10,6 @@ if (!file_exists($counterFile)) {
 // Lê o valor atual do contador
 $counter = (int)file_get_contents($counterFile);
 
-// Incrementa o contador
-$counter++;
-
-// Salva o novo valor no arquivo
-file_put_contents($counterFile, (string)$counter);
-
 // Retorna o valor do contador como resposta
 echo $counter;
 ?>
