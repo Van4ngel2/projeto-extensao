@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,26 +13,22 @@
       <button id="startBtn">Start</button>
       <button id="ranking">Ranking</button>
       <button id="sair">Sair</button>
-    <section id="display" class="counter__number">0</section>
-      <section class="counter__btns">
-        <button id="decrease">Decrease</button>
-        
-        <button id="increase">Increase</button>
-      </section>
+      
+      <!-- Espaço para mostrar o número de usuários cadastrados -->
+      <div>
+        <h3>Número de usuários cadastrados:</h3>
+        <p id="userCount">Carregando...</p>
+      </div>
     </div>
   </div>
 
-  
-      
-
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 
   <script>
-   
-
     document.getElementById("startBtn").onclick = function () {
       window.location.href = "index.html";
     };
+
     document.getElementById("ranking").onclick = function () {
       window.location.href = "ranking.html";
     };
@@ -45,6 +41,25 @@
       // Redirecionar para a tela de login após o logout
       window.location.href = "login.html";
     };
+
+    // Função para buscar o número de usuários cadastrados
+    function fetchUserCount() {
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+          if (xhr.status === 200) {
+            document.getElementById("userCount").textContent = xhr.responseText;
+          } else {
+            console.error('Erro ao buscar número de usuários:', xhr.status, xhr.statusText);
+          }
+        }
+      };
+      xhr.open("GET", "get_user_count.php", true);
+      xhr.send();
+    }
+
+    // Chama a função para buscar o número de usuários cadastrados ao carregar a página
+    fetchUserCount();
   </script>
 </body>
 </html>
