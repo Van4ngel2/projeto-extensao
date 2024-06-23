@@ -28,7 +28,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["username"]) && isset($
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
-        // Usuário encontrado, redireciona para a página de sucesso
+        // Usuário encontrado, incrementa o contador de acessos
+        $counterFile = 'counter.txt';
+
+        if (!file_exists($counterFile)) {
+            file_put_contents($counterFile, '0');
+        }
+
+        $counter = (int)file_get_contents($counterFile);
+        $counter++;
+        file_put_contents($counterFile, (string)$counter);
+
+        // Redireciona para a página inicial
         header("Location: inicial.html");
         exit(); // Certifique-se de encerrar o script após o redirecionamento
     } else {
